@@ -6,9 +6,9 @@ namespace VærkstedBilRegisteringApp
 {
     internal class JSON
     {
-        public static string userFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        public static string _userFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
         private const string _fileName = "køretøj.json";
-        private static string _filePath = Path.Combine(userFolder, _fileName);
+        private static string _filePath = Path.Combine(_userFolder, _fileName);
         private static List<object> _alleKøretøjer = new List<object>();
 
         public static void WriteToJsonFile(List<object> alleKøretøjer)

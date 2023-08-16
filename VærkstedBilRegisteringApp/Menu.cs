@@ -84,16 +84,16 @@ namespace VærkstedBilRegisteringApp
         private static void RegistrerKunde()
         {
             //Opsætning af spørgsmål > brugerinput
-            CommonMethods cm = new CommonMethods();
-            string fornavn = cm.ValiderKunBogstaver("Indtast kundens fornavn: ");
-            string efternavn = cm.ValiderKunBogstaver("Indtast kundens efternavn: ");
-            string telefonnummer = cm.ValiderTelefonnummer("Indtast kundens telefonnummer: ");
-            string mærke = cm.ValiderKunBogstaver("Indtast kundens bils mærke: ");
-            string model = cm.MenuNullCheck("Indtast bilens model: ");
-            string nummerplade = cm.MenuNullCheck("Indtast kundens nummerplade: ");
-            (double motorStørrelse, bool erBenzin) = cm.CheckMotorStørrelse("Indtast bilens motor størrelse: ");
-            string årgang = cm.ValiderÅrgang("Indtast bilens årgang: ");
-            DateOnly førsteRegistrering = cm.ValiderDato("Indtast bilens første registrerings dato: ");
+            Validering val = new Validering();
+            string fornavn = val.ValiderKunBogstaver("Indtast kundens fornavn: ");
+            string efternavn = val.ValiderKunBogstaver("Indtast kundens efternavn: ");
+            string telefonnummer = val.ValiderTelefonnummer("Indtast kundens telefonnummer: ");
+            string mærke = val.ValiderKunBogstaver("Indtast kundens bils mærke: ");
+            string model = val.MenuNullCheck("Indtast bilens model: ");
+            string nummerplade = val.MenuNullCheck("Indtast kundens nummerplade: ");
+            (double motorStørrelse, bool erBenzin) = val.CheckMotorStørrelse("Indtast bilens motor størrelse: ");
+            string årgang = val.ValiderÅrgang("Indtast bilens årgang: ");
+            DateOnly førsteRegistrering = val.ValiderDato("Indtast bilens første registrerings dato: ");
             DateOnly sidsteSynsDato = new();
 
             //Check om bilen skal synes
@@ -129,11 +129,11 @@ namespace VærkstedBilRegisteringApp
             const int _intervalSyn = 2;
             DateTime currentDate = DateTime.Now;
             DateOnly currentDateOnly = new(currentDate.Year, currentDate.Month, currentDate.Day);
-            CommonMethods cm = new();
+            Validering val = new Validering();
 
             if (førsteRegistrering.Year < DateTime.Now.Year - _førsteGangSyn)
             {
-                sidsteSynsDato = cm.ValiderDato("Indtast bilens sidste syns dato: ");
+                sidsteSynsDato = val.ValiderDato("Indtast bilens sidste syns dato: ");
                 if (sidsteSynsDato <= currentDateOnly.AddYears(-_intervalSyn))
                 {
                     Console.ForegroundColor = ConsoleColor.Red;

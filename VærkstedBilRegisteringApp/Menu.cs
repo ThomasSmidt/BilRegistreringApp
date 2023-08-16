@@ -6,12 +6,19 @@ namespace VærkstedBilRegisteringApp
     internal class Menu
     {
         static List<object> bilRegister;
+
         public static void MenuSetup()
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
             CommonMethods cm = new();
             GenererBanner();
+
+            //Clear bilRegister for at undgå duplikation af objekter
+            if (bilRegister != null)
+            {
+                bilRegister.Clear();
+            }
 
             //Henter bilregisteret fra en JSON fil og indsætter det i en liste
             bilRegister = JSON.ReadFromJsonFile();
@@ -89,11 +96,10 @@ namespace VærkstedBilRegisteringApp
             DateOnly førsteRegistrering = cm.ValiderDato("Indtast bilens første registrerings dato: ");
             DateOnly sidsteSynsDato = new();
 
-
             //Check om bilen skal synes
             CheckOmBilenSkalTilSyn(førsteRegistrering, sidsteSynsDato);
 
-            //Instantierer et nyt køretøj afhængig af, om det skal være float eller double
+            //Instantierer et nyt køretøj afhængig af, om det skal være float eller double og tilføjer det til bilRegister
             if (erBenzin)
             {
                 Køretøj<float> benzinBil = new Køretøj<float>(fornavn, efternavn, telefonnummer, mærke, model,
@@ -121,7 +127,7 @@ namespace VærkstedBilRegisteringApp
         {
             const int _førsteGangSyn = 5;
             const int _intervalSyn = 2;
-            DateTime currentDate = DateTime.Now.AddYears(_intervalSyn);
+            DateTime currentDate = DateTime.Now;
             DateOnly currentDateOnly = new(currentDate.Year, currentDate.Month, currentDate.Day);
             CommonMethods cm = new();
 
@@ -187,7 +193,7 @@ namespace VærkstedBilRegisteringApp
 
         private static void CheckEfterFabriksFejl(string mærke, string model, string årgang)
         {
-            //Udksriver fabriksfejl hvis mærke, model, og årgang matcher
+            //Udksriver fabriksfejl hvis mærke, model, og årgang matcher en bil i "TilbageKaldteBiler"
             foreach (TilbageKaldteBilerEnum tilbagekaldtBil in Enum.GetValues(typeof(TilbageKaldteBilerEnum)))
             {
                 FieldInfo field = tilbagekaldtBil.GetType().GetField(tilbagekaldtBil.ToString());

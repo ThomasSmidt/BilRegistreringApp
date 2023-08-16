@@ -36,7 +36,7 @@
                 Console.Write(prompt);
                 navn = Console.ReadLine();
 
-                if (ErBogstavEllerMellemrum(navn))
+                if (ErBogstavEllerMellemrum(navn) && navn.Length != 0)
                 {
                     break;
                 }
@@ -68,13 +68,13 @@
                 Console.Write(prompt);
                 telefonnummer = Console.ReadLine();
 
-                if (!ErGyldigtTelefonnummer(telefonnummer))
+                if (ErGyldigtTelefonnummer(telefonnummer))
                 {
-                    VisFejlBesked("UgyldigtInput");
+                    break;
                 }
                 else
                 {
-                    break;
+                    VisFejlBesked("UgyldigtInput");
                 }
             } while (true);
 
@@ -97,24 +97,25 @@
         }
         public string MenuNullCheck(string prompt)
         {
-            string nummerplade;
+            string input;
 
             do
             {
                 Console.Write(prompt);
-                nummerplade = Console.ReadLine();
+                input = Console.ReadLine();
 
-                if (nummerplade == null)
-                {
-                    VisFejlBesked("UgyldigtInput");
-                }
-                else
+                if (input != null && input.Length != 0)
                 {
                     break;
                 }
+                else
+                {
+                    VisFejlBesked("UgyldigtInput");
+
+                }
             } while (true);
 
-            return nummerplade;
+            return input;
         }
         public (double, bool) CheckMotorStørrelse(string prompt)
         {

@@ -29,6 +29,7 @@ namespace VærkstedBilRegisteringApp
                 {
                     var jsonObject = JObject.Parse(data.ToString());
 
+                    //Opretter variabler ud fra json filen
                     string mærke = jsonObject.Value<string>("Mærke");
                     string model = jsonObject.Value<string>("Model");
                     string størrelse = jsonObject.Value<string>("Størrelse");
@@ -43,11 +44,12 @@ namespace VærkstedBilRegisteringApp
                     string fornavn = jsonObject.SelectToken("KundeKontaktInfo.kundensFornavn").ToString();
                     string efternavn = jsonObject.SelectToken("KundeKontaktInfo.kundensEfternavn").ToString();
                     string tlf = jsonObject.SelectToken("KundeKontaktInfo.kundensTlf").ToString();
-
+                    
+                    //Opretter et Køretøj objekt af enten <double> eller <string>, afhængig af om "størrelse" kan parses til en double
                     if (isDouble)
                         _alleKøretøjer.Add(new Køretøj<double>(fornavn, efternavn, tlf, mærke, model, dblStørrelse, nummerplade, årgang, førsteRegistrering, sidsteSynsDato));
                     else
-                        _alleKøretøjer.Add(new Køretøj<double>(fornavn, efternavn, tlf, mærke, model, dblStørrelse, nummerplade, årgang, førsteRegistrering, sidsteSynsDato));
+                        _alleKøretøjer.Add(new Køretøj<string>(fornavn, efternavn, tlf, mærke, model, størrelse, nummerplade, årgang, førsteRegistrering, sidsteSynsDato));
                 }
             }
             return _alleKøretøjer;

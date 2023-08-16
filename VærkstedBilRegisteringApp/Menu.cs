@@ -9,6 +9,7 @@ namespace VærkstedBilRegisteringApp
 
         public static void MenuSetup()
         {
+            //Opsætning af startside
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Yellow;
             CommonMethods cm = new();
@@ -83,7 +84,7 @@ namespace VærkstedBilRegisteringApp
 
         private static void RegistrerKunde()
         {
-            //Opsætning af spørgsmål > brugerinput
+            //Opsætning af spørgsmål > brugerinput loops
             Validering val = new Validering();
             string fornavn = val.ValiderKunBogstaver("Indtast kundens fornavn: ");
             string efternavn = val.ValiderKunBogstaver("Indtast kundens efternavn: ");
@@ -217,6 +218,5 @@ namespace VærkstedBilRegisteringApp
                 "\r\n\t/_____/\\___/_/ /_/_/ /_/\\__, /____/  /_____/_/_/\\___/_/     " +
                 "\r\n\t                       /____/                               \n");
         }
-
     }
 }

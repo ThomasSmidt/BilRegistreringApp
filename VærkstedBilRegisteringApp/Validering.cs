@@ -2,7 +2,7 @@
 {
     internal class Validering
     {
-        CommonMethods cm;
+        CommonMethods cm = new();
         public string ValiderKunBogstaver(string prompt)
         {
             string navn;
@@ -114,18 +114,18 @@
                 }
             } while (true);
         }
-        public DateOnly ValiderDato(string prompt)
+        public DateTime ValiderDato(string prompt)
         {
-            DateOnly dateTime;
+            DateTime dateTime;
 
             do
             {
                 Console.Write(prompt);
                 string input = Console.ReadLine();
 
-                if (DateOnly.TryParse(input, out dateTime))
+                if (DateTime.TryParse(input, out dateTime))
                 {
-                    return dateTime;
+                    return dateTime.ToLocalTime();
                 }
                 else
                 {

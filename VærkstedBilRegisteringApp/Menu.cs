@@ -94,8 +94,8 @@ namespace VærkstedBilRegisteringApp
             string nummerplade = val.MenuNullCheck("Indtast kundens nummerplade: ");
             (double motorStørrelse, bool erBenzin) = val.CheckMotorStørrelse("Indtast bilens motor størrelse: ");
             string årgang = val.ValiderÅrgang("Indtast bilens årgang: ");
-            DateOnly førsteRegistrering = val.ValiderDato("Indtast bilens første registrerings dato: ");
-            DateOnly sidsteSynsDato = new();
+            DateTime førsteRegistrering = val.ValiderDato("Indtast bilens første registrerings dato: ");
+            DateTime sidsteSynsDato = new();
 
             //Check om bilen skal synes
             CheckOmBilenSkalTilSyn(førsteRegistrering, sidsteSynsDato);
@@ -124,18 +124,17 @@ namespace VærkstedBilRegisteringApp
             MenuSetup();
         }
 
-        private static void CheckOmBilenSkalTilSyn(DateOnly førsteRegistrering, DateOnly sidsteSynsDato)
+        private static void CheckOmBilenSkalTilSyn(DateTime førsteRegistrering, DateTime sidsteSynsDato)
         {
             const int _førsteGangSyn = 5;
             const int _intervalSyn = 2;
-            DateTime currentDate = DateTime.Now;
-            DateOnly currentDateOnly = new(currentDate.Year, currentDate.Month, currentDate.Day);
-            Validering val = new Validering();
+            DateTime currentDate = DateTime.Now.ToLocalTime();
+            Validering val = new();
 
             if (førsteRegistrering.Year < DateTime.Now.Year - _førsteGangSyn)
             {
                 sidsteSynsDato = val.ValiderDato("Indtast bilens sidste syns dato: ");
-                if (sidsteSynsDato <= currentDateOnly.AddYears(-_intervalSyn))
+                if (sidsteSynsDato <= currentDate.AddYears(-_intervalSyn))
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("\nKundens bil skal til syn.");

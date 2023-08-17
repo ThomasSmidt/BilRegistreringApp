@@ -33,8 +33,8 @@ namespace VærkstedBilRegisteringApp
                     string størrelse = jsonObject.Value<string>("Størrelse");
                     string nummerplade = jsonObject.Value<string>("Nummerplade");
                     string årgang = jsonObject.Value<string>("Årgang");
-                    DateOnly førsteRegistrering = DateOnly.Parse(jsonObject.Value<string>("FørsteRegistrering"));
-                    DateOnly sidsteSynsDato = DateOnly.Parse(jsonObject.Value<string>("SidsteSynsDato"));
+                    DateTime førsteRegistrering = DateTime.Parse(jsonObject.Value<string>("FørsteRegistrering"));
+                    DateTime sidsteSynsDato = DateTime.Parse(jsonObject.Value<string>("SidsteSynsDato"));
 
                     double dblStørrelse;
                     bool isDouble = double.TryParse(størrelse, out dblStørrelse);

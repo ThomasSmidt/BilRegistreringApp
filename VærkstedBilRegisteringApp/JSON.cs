@@ -18,8 +18,6 @@ namespace VærkstedBilRegisteringApp
         }
         public static List<object> ReadFromJsonFile()
         {
-            List<object> alleKøretøjer = new();
-
             if (File.Exists(_filePath))
             {
                 string currentData = File.ReadAllText(_filePath);

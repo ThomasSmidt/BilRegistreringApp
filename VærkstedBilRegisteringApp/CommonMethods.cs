@@ -21,7 +21,7 @@
         public void VisFejlBesked(string errorType)
         {
             //Dette program bruger kun "ugyldigt input" men metoden er lavet på denne måde,
-            //for at víse hvordan man kan lave en metode som kan udskriver flere fejlbeskeder.
+            //for at víse hvordan man kan lave en metode som kan udskrive flere fejlbeskeder.
             if (errorType == "UgyldigtInput")
             {
                 Console.Write("Ugyldig indtastning. Tryk på en vilkårlig tast for at prøve igen.");

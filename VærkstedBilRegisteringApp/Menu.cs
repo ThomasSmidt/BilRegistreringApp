@@ -5,7 +5,7 @@ namespace VærkstedBilRegisteringApp
 {
     internal class Menu
     {
-        static List<object> bilRegister;
+        static List<object>? bilRegister;
 
         public static void MenuSetup()
         {
@@ -128,7 +128,7 @@ namespace VærkstedBilRegisteringApp
         {
             const int _førsteGangSyn = 5;
             const int _intervalSyn = 2;
-            DateTime currentDate = DateTime.Now;
+            DateTime currentDate = DateTime.Now.ToLocalTime();
             DateOnly currentDateOnly = new(currentDate.Year, currentDate.Month, currentDate.Day);
             Validering val = new Validering();
 

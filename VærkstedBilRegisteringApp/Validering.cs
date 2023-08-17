@@ -20,15 +20,13 @@ namespace VærkstedBilRegisteringApp
 
                 if (ErBogstavEllerMellemrum(navn) && navn.Length != 0)
                 {
-                    break;
+                    return navn;
                 }
                 else
                 {
                     cm.VisFejlBesked("UgyldigtInput");
                 }
             } while (true);
-
-            return navn;
         }
         static bool ErBogstavEllerMellemrum(string str)
         {
@@ -52,15 +50,14 @@ namespace VærkstedBilRegisteringApp
 
                 if (ErGyldigtTelefonnummer(telefonnummer))
                 {
-                    break;
+                return telefonnummer;
+
                 }
                 else
                 {
                     cm.VisFejlBesked("UgyldigtInput");
                 }
             } while (true);
-
-            return telefonnummer;
         }
         public static bool ErGyldigtTelefonnummer(string telefonnummer)
         {
@@ -88,7 +85,7 @@ namespace VærkstedBilRegisteringApp
 
                 if (input != null && input.Length != 0)
                 {
-                    break;
+                    return input;
                 }
                 else
                 {
@@ -96,8 +93,6 @@ namespace VærkstedBilRegisteringApp
 
                 }
             } while (true);
-
-            return input;
         }
         public (double, bool) CheckMotorStørrelse(string prompt)
         {
@@ -136,15 +131,13 @@ namespace VærkstedBilRegisteringApp
 
                 if (DateOnly.TryParse(input, out dateTime))
                 {
-                    break;
+                    return dateTime;
                 }
                 else
                 {
                     cm.VisFejlBesked("UgyldigtInput");
                 }
             } while (true);
-
-            return dateTime;
         }
         public string ValiderÅrgang(string prompt)
         {
@@ -157,15 +150,13 @@ namespace VærkstedBilRegisteringApp
 
                 if (årgang != null && årgang.Length == 4)
                 {
-                    break;
+                    return årgang;
                 }
                 else
                 {
                     cm.VisFejlBesked("UgyldigtInput");
                 }
             } while (true);
-
-            return årgang;
         }
     }
 }

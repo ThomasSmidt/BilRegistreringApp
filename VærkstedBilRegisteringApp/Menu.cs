@@ -16,10 +16,7 @@ namespace VærkstedBilRegisteringApp
             GenererBanner();
 
             //Clear bilRegister for at undgå duplikation af objekter
-            if (bilRegister != null)
-            {
-                bilRegister.Clear();
-            }
+            bilRegister?.Clear();
 
             //Henter bilregisteret fra en JSON fil og indsætter det i en liste
             bilRegister = JSON.ReadFromJsonFile();

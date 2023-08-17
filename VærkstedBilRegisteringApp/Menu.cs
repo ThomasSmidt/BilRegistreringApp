@@ -84,7 +84,7 @@ namespace VærkstedBilRegisteringApp
 
         private static void RegistrerKunde()
         {
-            //Opsætning af spørgsmål > brugerinput loops
+            //Opsætning af spørgsmål > brugerinput > validering loops
             Validering val = new Validering();
             string fornavn = val.ValiderKunBogstaver("Indtast kundens fornavn: ");
             string efternavn = val.ValiderKunBogstaver("Indtast kundens efternavn: ");

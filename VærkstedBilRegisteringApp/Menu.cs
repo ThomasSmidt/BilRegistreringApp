@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Globalization;
+using System.Reflection;
 using VærkstedBilRegisteringApp.Køretøjer.TilbageKaldteBiler;
 
 namespace VærkstedBilRegisteringApp
@@ -125,7 +126,7 @@ namespace VærkstedBilRegisteringApp
         {
             const int _førsteGangSyn = 5;
             const int _intervalSyn = 2;
-            DateTime currentDate = DateTime.Now.ToLocalTime();
+            DateTime currentDate = DateTime.Now;
             Validering val = new();
 
             if (førsteRegistrering.Year < DateTime.Now.Year - _førsteGangSyn)

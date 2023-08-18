@@ -93,10 +93,10 @@ namespace VærkstedBilRegisteringApp
             (double motorStørrelse, bool erBenzin) = val.CheckMotorStørrelse("Indtast bilens motor størrelse: ");
             string årgang = val.ValiderÅrgang("Indtast bilens årgang: ");
             DateTime førsteRegistrering = val.ValiderDato("Indtast bilens første registrerings dato: ");
-            DateTime sidsteSynsDato = new();
+            
 
             //Check om bilen skal synes
-            CheckOmBilenSkalTilSyn(førsteRegistrering, sidsteSynsDato);
+            DateTime sidsteSynsDato = CheckOmBilenSkalTilSyn(førsteRegistrering);
 
             //Instantierer et nyt køretøj afhængig af, om det skal være float eller double og tilføjer det til bilRegister
             if (erBenzin)
@@ -122,11 +122,12 @@ namespace VærkstedBilRegisteringApp
             MenuSetup();
         }
 
-        private static void CheckOmBilenSkalTilSyn(DateTime førsteRegistrering, DateTime sidsteSynsDato)
+        private static DateTime CheckOmBilenSkalTilSyn(DateTime førsteRegistrering)
         {
             const int _førsteGangSyn = 5;
             const int _intervalSyn = 2;
             DateTime currentDate = DateTime.Now;
+            DateTime sidsteSynsDato = new();
             Validering val = new();
 
             //Hvis bilens registreringsdato er ældre end 5 år, gå videre til næste check
@@ -154,6 +155,7 @@ namespace VærkstedBilRegisteringApp
                 Console.WriteLine("\nKundens bil skal ikke til syn.");
                 Console.ForegroundColor = ConsoleColor.White;
             }
+            return sidsteSynsDato;
         }
 
         private static void VisKontaktInformation(List<object> alleKøretøjer)

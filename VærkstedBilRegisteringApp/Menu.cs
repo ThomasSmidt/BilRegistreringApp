@@ -201,7 +201,7 @@ namespace VærkstedBilRegisteringApp
             {
                 FieldInfo field = tilbagekaldtBil.GetType().GetField(tilbagekaldtBil.ToString());
                 TilbageKaldteBilerAttributer attr = field.GetCustomAttribute<TilbageKaldteBilerAttributer>();
-                if (attr.Mærke == mærke && attr.Model == model && årgang <= attr.Årgang)
+                if (attr.Mærke.ToLower() == mærke.ToLower() && attr.Model.ToLower() == model.ToLower() && årgang <= attr.Årgang)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($"Bilen har følgende fabriksfejl: {attr.Fabriksfejl}");

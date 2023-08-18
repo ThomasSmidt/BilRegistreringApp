@@ -129,9 +129,12 @@ namespace VærkstedBilRegisteringApp
             DateTime currentDate = DateTime.Now;
             Validering val = new();
 
-            if (førsteRegistrering.Year < DateTime.Now.Year - _førsteGangSyn)
+            //Hvis bilens registreringsdato er ældre end 5 år, gå videre til næste check
+            if (førsteRegistrering.Year <= DateTime.Now.Year - _førsteGangSyn)
             {
                 sidsteSynsDato = val.ValiderDato("Indtast bilens sidste syns dato: ");
+
+                //Hvis bilens sidst blev synet for over 2 år siden, skal bilen til syn
                 if (sidsteSynsDato <= currentDate.AddYears(-_intervalSyn))
                 {
                     Console.ForegroundColor = ConsoleColor.Red;

@@ -10,7 +10,7 @@ internal class Køretøj<T> : IKøretøj
     public Køretøj(
         string? kundensFornavn, string? kundensEfternavn, string? kundensTlf, 
         string? mærke, string? model, T størrelse, string nummerplade,
-        string årgang, DateTime førsteRegistrering, DateTime sidsteSynsDato)
+        int årgang, DateTime førsteRegistrering, DateTime sidsteSynsDato)
     {
         Mærke = mærke;
         Model = model;

@@ -133,7 +133,7 @@
                 }
             } while (true);
         }
-        public string ValiderÅrgang(string prompt)
+        public int ValiderÅrgang(string prompt)
         {
             string? årgang;
 
@@ -142,9 +142,9 @@
                 Console.Write(prompt);
                 årgang = Console.ReadLine();
 
-                if (årgang != null && årgang.Length == 4)
+                if (årgang != null && årgang.Length == 4 && Int32.TryParse(årgang, out int intÅrgang))
                 {
-                    return årgang;
+                    return intÅrgang;
                 }
                 else
                 {

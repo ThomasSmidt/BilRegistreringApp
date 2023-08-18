@@ -32,7 +32,7 @@ namespace VærkstedBilRegisteringApp
                     string model = jsonObject.Value<string>("Model");
                     string størrelse = jsonObject.Value<string>("Størrelse");
                     string nummerplade = jsonObject.Value<string>("Nummerplade");
-                    string årgang = jsonObject.Value<string>("Årgang");
+                    int årgang = jsonObject.Value<int>("Årgang");
                     DateTime førsteRegistrering = DateTime.Parse(jsonObject.Value<string>("FørsteRegistrering"));
                     DateTime sidsteSynsDato = DateTime.Parse(jsonObject.Value<string>("SidsteSynsDato"));
 

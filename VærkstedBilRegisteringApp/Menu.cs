@@ -91,7 +91,7 @@ namespace VærkstedBilRegisteringApp
             string model = val.MenuNullCheck("Indtast bilens model: ");
             string nummerplade = val.MenuNullCheck("Indtast kundens nummerplade: ");
             (double motorStørrelse, bool erBenzin) = val.CheckMotorStørrelse("Indtast bilens motor størrelse: ");
-            string årgang = val.ValiderÅrgang("Indtast bilens årgang: ");
+            int årgang = val.ValiderÅrgang("Indtast bilens årgang: ");
             DateTime førsteRegistrering = val.ValiderDato("Indtast bilens første registrerings dato: ");
             
 
@@ -194,14 +194,14 @@ namespace VærkstedBilRegisteringApp
             MenuSetup();
         }
 
-        private static void CheckEfterFabriksFejl(string mærke, string model, string årgang)
+        private static void CheckEfterFabriksFejl(string mærke, string model, int årgang)
         {
             //Udksriver fabriksfejl hvis mærke, model, og årgang matcher en bil i "TilbageKaldteBiler"
             foreach (TilbageKaldteBilerEnum tilbagekaldtBil in Enum.GetValues(typeof(TilbageKaldteBilerEnum)))
             {
                 FieldInfo field = tilbagekaldtBil.GetType().GetField(tilbagekaldtBil.ToString());
                 TilbageKaldteBilerAttributer attr = field.GetCustomAttribute<TilbageKaldteBilerAttributer>();
-                if (attr.Mærke == mærke && attr.Model == model && årgang == attr.Årgang)
+                if (attr.Mærke == mærke && attr.Model == model && årgang <= attr.Årgang)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($"Bilen har følgende fabriksfejl: {attr.Fabriksfejl}");
